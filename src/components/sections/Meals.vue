@@ -1,6 +1,8 @@
 <template>
     <div v-if="mealsExist" class="md:flex-row flex flex-wrap gap-6 justify-start flex-gap-2 flex-col">
-        <div  class="md:w-[31%] h-[450px] rounded-xl shadow-md hover:cursor-pointer py-2 w-full" v-for="meal in meals" :key="meal.idMeal">
+        
+            <div  class="md:w-[31%] h-[450px] rounded-xl shadow-md hover:cursor-pointer py-2 w-full" v-for="meal in meals" :key="meal.idMeal" >
+                <router-link :to="{name: 'mealDetails', params: {id: meal.idMeal}}">
             <div class="h-4/6 rounded-t-xl bg-cover bg-center"
                 :style="{ backgroundImage: getBackgroundImageUrl(meal.strMealThumb) }"></div>
             <div class="p-3 flex flex-col gap-2">
@@ -8,7 +10,7 @@
                 <div class="flex gap-2 justify-end items-center">
                     <span class="text-sm underline"
                         :class="meal.strSource ? 'text-blue-500 hover:curson-pointer' : 'text-gray-500 hover:pointer-events-none'"><a
-                            target="_blank" :href="meal.strSource">Source</a></span>
+                            target="_blank" :href="meal.strSource">View source</a></span>
                     <button class="w-fit btn text-white p-1 px-2 text-xs rounded-md"
                         :class="meal.strYoutube ? 'bg-red-600 hover:cursor-pointer' : 'bg-gray-500 hover:pointer-events-none'">
                         <a target="_blank" :href="meal.strYoutube">Youtube</a>
@@ -28,10 +30,12 @@
                     <span v-else class="text-xs text-ellipsis">No tags present</span>
                 </div>
             </div>
+        </router-link>
         </div>
+        
     </div>
     <div v-else>
-            <h1 class="text-[40px] text-gray-400">No meals to display</h1>
+            <h1 class="text-[40px] text-gray-400">No recipes to display</h1>
     </div>
 </template>
 
@@ -43,7 +47,6 @@ import { computed, ref, reactive } from 'vue'
 const ingredients = ref(0);
 
 const meals = computed(() => store.state.meals.data);
-
 const mealsExist = computed(()=> meals?.value? true: false);
 
 const getDifficultyClass = (meal) => {

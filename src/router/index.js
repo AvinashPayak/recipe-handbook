@@ -1,24 +1,45 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from '../views/Home.vue'
-import Ingredients from '../views/Ingredients.vue'
-import Meals from '../views/Meals.vue'
+import MealDetails from '../views/MealDetails.vue'
+import Meals from '../components/sections/Meals.vue'
+import Ingredients from '../components/sections/Ingredients.vue'
+import Instructions from '../components/sections/Instructions.vue'
 
 const routes = [
     {
         path: '/',
         name: 'Home',
-        component: Home
+        component: Home,
+        children: [
+            {
+                path: '/meals/:keyword?',
+                name: 'Meal',
+                component: Meals
+            },
+        ]
     },
     {
-        path: '/ingredients',
-        name: 'Ingredients',
-        component: Ingredients
+        path: '/meal/:id',
+        name: 'mealDetails',
+        component: MealDetails,
+        children: [
+            {
+                path: '',
+                redirect: 'ingredients',
+            },
+            {
+                path: 'ingredients',
+                name: 'Ingredients',
+                component: Ingredients
+            },
+            {
+                path: 'instructions',
+                name: 'Instructions',
+                component: Instructions
+            },
+        ]
     },
-    {
-        path: '/meals',
-        name: 'Meals',
-        component: Meals
-    }
+
 ];
 
 const router = createRouter({

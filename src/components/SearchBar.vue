@@ -7,16 +7,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import SearchIcon from '../public/icons/SearchIcon.vue'
 import store from '../store'
+import { useRouter, useRoute } from 'vue-router';
+
 
 const keyword = ref('');
+const router = useRouter();
+const route = useRoute();
 
-const searchMeal = ()=>{
-  keyword.value;
-  store.dispatch('searchMeal', keyword.value);
+const searchMeal = async ()=>{
+  await store.dispatch('searchMeal', keyword.value);
+  router.push("/meals/" + keyword.value);
 }
+
+onMounted(()=>{
+  keyword.value = route.params.keyword;
+  if(keyword.value) {
+    searchMeal();
+  }
+})
 </script>
 
 <style scoped>

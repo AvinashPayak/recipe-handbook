@@ -5,3 +5,11 @@ export async function searchMeal({ commit }, keyword){
     const { data } = await axiosClient.get(url); 
     commit('setSearchedMeals', data.meals);
 }
+
+export async function getMealDetails({ commit }, id){
+    const url = `lookup.php?i=${id}`
+    const { data } = await axiosClient.get(url); 
+    debugger;
+    commit('setMealDetails', data.meals[0]);
+}
+

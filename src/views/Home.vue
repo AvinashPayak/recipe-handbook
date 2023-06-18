@@ -9,7 +9,7 @@
                     <FilterIcon class="w-6 h-6" currentColor="#FFF" />
                 </div> -->
             </div>
-            <Meals/>
+            <router-view></router-view>
         </div>
     </div>
 </template>
