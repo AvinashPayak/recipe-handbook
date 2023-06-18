@@ -5,9 +5,9 @@
                 looking for?</h1>
             <div class="flex gap-x-5 justify-between">
                 <SearchBar />
-                <div class="p-3 bg-purple-700 rounded-full">
+                <!-- <div class="p-3 bg-purple-700 rounded-full">
                     <FilterIcon class="w-6 h-6" currentColor="#FFF" />
-                </div>
+                </div> -->
             </div>
             <Meals/>
         </div>
