@@ -2,12 +2,12 @@
     <div class="max-w-[1100px] mx-auto h-[100vh]">
       <div class="bg-cover bg-center h-[400px]" :style="{ backgroundImage: getBackgroundImageUrl(mealDetails.strMealThumb) }"></div>
       <div class="rounded-t-[40px] mt-[-100px] min-h-[70vh]  bg-white shadow-2xl w-full p-6 flex flex-col gap-5">
-        <div class="flex gap-5">
+        <div class="flex gap-3">
           <router-link :to="{ name: 'Ingredients' }" :class="{ 'active-link': isRouteActive('Ingredients') }">
-            <h3 class="text-[30px]">Ingredients</h3>
+            <h3 class="text-[24px]">Ingredients</h3>
           </router-link>
           <router-link :to="{ name: 'Instructions' }" :class="{ 'active-link': isRouteActive('Instructions') }">
-            <h3 class="text-[30px]">Instructions</h3>
+            <h3 class="text-[24px]">Instructions</h3>
           </router-link>
         </div>
         <div>
